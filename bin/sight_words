@@ -6,6 +6,7 @@ $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
 require 'sight_words'
 
 lesson = SightWords::Lesson.new
-words_list = SightWords::WordList.new
-words_list_array = %w[words_list]
-p words_list_array
+words_list = SightWords::WordList.new(ARGV.shift || 0)
+words = words_list.load_list
+
+puts words

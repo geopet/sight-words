@@ -1,21 +1,4 @@
 module SightWords
-  class Lesson
-
-    def initialize
-      @words_correct = []
-      @words_incorrect = []
-    end
-
-    def words_correct_list
-      @words_correct
-    end
-
-    def words_incorrect_list
-      @words_incorrect
-    end
-
-  end
-
   class WordList
 
     def initialize(level)
@@ -23,7 +6,11 @@ module SightWords
     end
 
     def load_list
-      send("level_#{@level}")
+      begin
+        send("level_#{@level}")
+      rescue NoMethodError
+        'Unable to load list level...'
+      end
     end
 
     def level_0
@@ -50,5 +37,4 @@ module SightWords
     end
 
   end
-
 end
