@@ -2,6 +2,11 @@
 
 A project to assist my daughter's efforts in learning to read.
 
+I'm using test driven development to create this program, however, I am also
+prototyping before using TDD. The prototype branch will contain a general
+concept of where the program is headed and is currently more functional than the
+master branch.
+
 ## Dolch List
 
 As described in the [Dolch List](http://en.wikipedia.org/wiki/Dolch_word_list):
