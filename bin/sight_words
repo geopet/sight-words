@@ -6,7 +6,29 @@ $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
 require 'sight_words'
 
 lesson = SightWords::Lesson.new
-words_list = SightWords::WordList.new(ARGV.shift || 0)
-words = words_list.load_list
+words_list = SightWords::WordList.new(ARGV.shift || 0).load_list
 
-puts words
+loop do
+  unless words_list.length == 0
+    word_to_display = words_list.sample
+    words_list.delete(word_to_display)
+    puts "#{word_to_display}\n"
+    puts "Did you know the word? (y or n)\n"
+    response = gets.chomp.downcase
+    if response == 'n'
+      lesson.add_to_incorrect(word_to_display)
+    else
+      lesson.add_to_correct(word_to_display)
+    end
+  else
+    puts "------------------------------------\n"
+    puts "Great job! You finished your lesson!\n"
+    puts "\n"
+    puts "You got these words correct:"
+    puts lesson.words_correct_list
+    puts "\n"
+    puts "You got these words incorrect:"
+    puts lesson.words_incorrect_list
+    break
+  end
+end
